@@ -1,4 +1,4 @@
-# travel-app
+# travel-app2
 
 A custom travel app that integrates data from multiple APIs to provide weather information, location details, and travel-related images. This project uses Node.js, Express, Webpack, and various APIs.
 
@@ -64,4 +64,3 @@ To run tests, use:
     ```bash
     npm test
     ```
-# travel-app2
