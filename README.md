@@ -21,7 +21,7 @@ A custom travel app that integrates data from multiple APIs to provide weather i
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/Yaman-ashraf/travel-app
+    git clone https://github.com/Yaman-ashraf/travel-app2
     cd travel-app
     ```
 

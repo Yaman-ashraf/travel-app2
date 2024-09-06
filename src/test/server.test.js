@@ -12,7 +12,7 @@ beforeAll((done) => {
 
 afterAll((done) => {
     if (server) {
-        server.close(done); // Ensure server is closed
+        server.close(done);
     } else {
         done(); // If no server, call done immediately
     }
