@@ -16,7 +16,25 @@ A custom travel app that integrates data from multiple APIs to provide weather i
 -   **Location Details**: Retrieves location information using the Geonames API.
 -   **Travel Images**: Provides images related to the travel destination using the Pixabay API.
 
-### Installation
+## API Credentials
+
+To run this project, you will need to add your own API credentials for the Geonames, Weatherbit, and Pixabay APIs.
+
+-   **Geonames API**: Replace the `username` in the `fetchLocationData` function in `src/client/js/app.js` with your own Geonames username.
+-   **Weatherbit API**: Replace the `key` in the `fetchWeatherData` function in `src/client/js/app.js` with your Weatherbit API key.
+-   **Pixabay API**: Replace the `key` in the `fetchImage` function in `src/client/js/app.js` with your Pixabay API key.
+
+## Node.js Version
+
+This project requires Node.js version **20.10.0**.
+To ensure:
+
+    ```bash
+    nvm use 20.10.0
+    ```
+
+
+## Installation
 
 1. **Clone the repository**:
 
@@ -33,15 +51,11 @@ A custom travel app that integrates data from multiple APIs to provide weather i
 
 3. **Build the project**:
 
-    Webpack is used to bundle the client-side code. Run the following command to build the project:
-
     ```bash
     npm run build-prod
     ```
 
 4. **Start the server**:
-
-    Run the following command to start the Express server:
 
     ```bash
     npm start
@@ -51,16 +65,13 @@ A custom travel app that integrates data from multiple APIs to provide weather i
 
 ## Development
 
-To start the development server with hot reloading, use:
-
     ```bash
     npm run build-dev
     ```
 
 ## Testing
 
-To run tests, use:
-
     ```bash
     npm test
     ```
+````
