@@ -29,9 +29,7 @@ To run this project, you will need to add your own API credentials for the Geona
 This project requires Node.js version **20.10.0**.
 To ensure:
 
-    ```bash
     nvm use 20.10.0
-    ```
 
 
 ## Installation
@@ -65,13 +63,8 @@ To ensure:
 
 ## Development
 
-    ```bash
     npm run build-dev
-    ```
 
 ## Testing
 
-    ```bash
     npm test
-    ```
-````
