@@ -1,11 +1,11 @@
 import request from 'supertest';
-import app from '../server/server'; // Adjust path as needed
+import app from '../server/server.js'; // Adjust path as needed
 
 let server;
 
 beforeAll((done) => {
     console.log = jest.fn(); // Suppress console logs
-    server = app.listen(4040, () => {
+    server = app.listen(5454, () => {
         done();
     });
 }, 10000);

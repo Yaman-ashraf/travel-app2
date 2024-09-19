@@ -18,12 +18,12 @@
             <!-- Trip Information -->
             <section id="trip-info">
                 <div id="trip-details">
-                    <h2 id="trip-location">My trip to: </h2>
-                    <p id="departure-date">Departing: </p>
+                    <h2 id="trip-location-display">My trip to: </h2>
+                    <p id="departure-date-display">Departing: </p>
                     <p id="high-temp">High: </p>
                     <p id="low-temp">Low: </p>
-                    <p id="weather-description">Mostly cloudy throughout the day</p>
-                    <img id="trip-image" src="" alt="Trip Image">
+                    <p id="weather-description"></p>
+                    <img id="trip-image" src="default-image-url.jpg" alt="Trip Image">
                 </div>
             </section>
 
@@ -31,16 +31,24 @@
             <section id="add-trip">
                 <h2>Add a New Trip</h2>
                 <form id="trip-form">
-                    <label for="trip-location">Location:</label>
-                    <input type="text" id="trip-location" placeholder="Enter Location" required />
-                    <label for="trip-date">Departing:</label>
-                    <input type="date" id="trip-date" required />
-                    <button type="submit">+ add trip</button>
+                    <label for="trip-location-input">Location:</label>
+                    <input type="text" id="trip-location-input" placeholder="Enter Location" required />
+
+                    <label for="trip-date-input">Departing:</label>
+                    <input type="date" id="trip-date-input" required />
+
+                    <button type="submit">+ Add Trip</button>
                 </form>
+            </section>
+
+            <!-- Additional Buttons for Save and Remove -->
+            <section id="trip-actions">
+                <button type="button" id="save-trip">Save Trip</button>
+                <button type="button" id="remove-trip">Remove Trip</button>
             </section>
         </main>
     </div>
-    <script src="../js/app.js"></script> 
+    <script src="../../../dist/main.js"></script>
 </body>
 
 </html>

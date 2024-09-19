@@ -48,7 +48,7 @@ const fetchImage = async (location) => {
         return data.hits[0].webformatURL;
     } catch (error) {
         console.error("Error fetching image:", error);
-        return 'default-image-url.jpg';
+        return 'default-image-url.jpg';  // Ensure this is a valid URL
     }
 };
 
@@ -85,18 +85,18 @@ export const handleSubmit = async (event) => {
 
 // Function to update the UI with trip info
 export const updateUI = (location, date, weatherData, imageUrl) => {
-    document.getElementById('location').textContent = `My trip to: ${location}`;
-    document.getElementById('departure-date').textContent = `Departing: ${new Date(date).toLocaleDateString()}`;
+    document.getElementById('trip-location-display').textContent = `My trip to: ${location}`;
+    document.getElementById('departure-date-display').textContent = `Departing: ${new Date(date).toLocaleDateString()}`;
     document.getElementById('high-temp').textContent = `High: ${weatherData.max_temp}°C`;
     document.getElementById('low-temp').textContent = `Low: ${weatherData.min_temp}°C`;
     document.getElementById('weather-description').textContent = weatherData.weather.description;
-    document.getElementById('days-away').textContent = `${location} is ${calculateDaysAway(date)} days away`;
     document.getElementById('trip-image').src = imageUrl;
     document.getElementById('trip-image').alt = location;
 
     // Clear the form
     document.getElementById('trip-form').reset();
 };
+
 
 // Helper function to calculate days away
 const calculateDaysAway = (date) => {
@@ -107,16 +107,65 @@ const calculateDaysAway = (date) => {
     return differenceInDays;
 };
 
-// Function to initialize event listeners
-export const initializeEventListeners = () => {
-    document.getElementById('trip-form').addEventListener('submit', handleSubmit);
-    document.getElementById('save-trip').addEventListener('click', () => {
-        alert('Trip saved!');
-    });
-    document.getElementById('remove-trip').addEventListener('click', () => {
-        alert('Trip removed!');
+// Function to save a trip
+const saveTrip = () => {
+    const location = document.getElementById('trip-location').textContent.split(': ')[1];
+    const date = document.getElementById('departure-date').textContent.split(': ')[1];
+
+    const trip = {
+        location,
+        date,
+        highTemp: document.getElementById('high-temp').textContent,
+        lowTemp: document.getElementById('low-temp').textContent,
+        weatherDescription: document.getElementById('weather-description').textContent,
+        image: document.getElementById('trip-image').src
+    };
+
+    let trips = JSON.parse(localStorage.getItem('trips')) || [];
+    trips.push(trip);
+    localStorage.setItem('trips', JSON.stringify(trips));
+
+    alert('Trip saved successfully!');
+};
+
+// Function to remove a trip
+const removeTrip = (index) => {
+    let trips = JSON.parse(localStorage.getItem('trips')) || [];
+    trips.splice(index, 1);
+    localStorage.setItem('trips', JSON.stringify(trips));
+    displaySavedTrips();
+    alert('Trip removed successfully!');
+};
+
+// Function to display saved trips
+const displaySavedTrips = () => {
+    const trips = JSON.parse(localStorage.getItem('trips')) || [];
+    const tripSection = document.getElementById('saved-trips');
+    tripSection.innerHTML = '';
+
+    trips.forEach((trip, index) => {
+        const tripDetails = `
+            <div>
+                <h2>Trip to: ${trip.location}</h2>
+                <p>Departing: ${trip.date}</p>
+                <p>High: ${trip.highTemp}</p>
+                <p>Low: ${trip.lowTemp}</p>
+                <p>Weather: ${trip.weatherDescription}</p>
+                <img src="${trip.image}" alt="${trip.location}">
+                <button onclick="removeTrip(${index})">Remove Trip</button>
+            </div>`;
+        tripSection.innerHTML += tripDetails;
     });
 };
 
 // Initialize event listeners on page load
-document.addEventListener('DOMContentLoaded', initializeEventListeners);
+export const initializeEventListeners = () => {
+    document.getElementById('trip-form').addEventListener('submit', handleSubmit);
+    document.getElementById('save-trip').addEventListener('click', saveTrip);
+    document.getElementById('remove-trip').addEventListener('click', displaySavedTrips); // Ensure trips are displayed
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeEventListeners();
+    displaySavedTrips(); // Display saved trips on page load
+});
